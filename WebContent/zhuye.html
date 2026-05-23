@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快递查询</title>
+<link rel="stylesheet" type="text/css" href="bishe.css">
+<style>
+ body{
+    background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+    margin: 0;
+    padding: 20px 0;
+ }
+ /* 查询栏容器BOX */
+ .query-box {
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 60px;
+ }
+ /* 用户名展示样式 */
+  .user-info {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     z-index: 999;
+     color: #fff;
+     font-size: 16px;
+     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+     display: none; /* 默认隐藏 */
+  }
+  .user-info span {
+     color: #ffd700; /* 用户名高亮金色 */
+     transition: all 0.2s;
+  }
+  .user-info span:hover {
+     color: #e6bc00;
+     text-decoration: underline;  /* 鼠标悬浮用户名：颜色加深 + 下划线 */
+  }
+  .user-info button {
+     margin-left: 10px;
+     padding: 5px 10px;
+     border: none;
+     border-radius: 3px;
+     background-color: #6c757d;
+     color: #fff;
+     font-size: 14px;
+  }
+
+  .user-info button:hover {
+     background-color: #5a6268;
+  }
+</style>
+<script src="common.js"></script>
+<script>
+// 新增：页面加载时判断登录状态
+window.onload = function() {
+    // 从localStorage获取登录信息（模拟后端登录返回的用户名）
+    const loginUser = localStorage.getItem('loginUsername');
+    const btnArea = document.querySelector('.top-right-btns');
+    const userInfoArea = document.querySelector('.user-info');
+
+    if (loginUser) {
+        // 已登录：隐藏按钮，显示用户名
+        btnArea.style.display = 'none';
+        userInfoArea.style.display = 'block';
+        // 填充用户名
+        document.getElementById('username').textContent = loginUser;
+    } else {
+        // 未登录：显示按钮，隐藏用户名
+        btnArea.style.display = 'block';
+        userInfoArea.style.display = 'none';
+    }
+};
+
+// 新增：退出登录功能
+function logout() {
+    localStorage.removeItem('loginUsername'); // 清除登录状态
+    location.reload(); // 刷新页面
+}
+function goToUserPage() {
+    window.location.href = "yonghu.html";
+}
+</script>
+</head>
+
+<body>
+<center>
+ <h1>快递查询，欢迎您</h1>
+ <hr>
+
+ <div class="nav-box">
+     <div id="nav">
+      <ul>
+		<li>
+		    <a href="#">
+		        <img src="img/LOGO.jpg" style="width: 80px; height: 40px; display: block;">
+		    </a>
+		</li>
+       <li><a href="#">全国站</a>
+          <ul class="erji_ul">
+          <li class="erji"><a href="shenzhen.html">深圳站</a></li>
+          <li class="erji"><a href="nanchang.html">南昌站</a></li>
+         </ul>
+       </li>
+       <li><a href="#">查快递</a>
+           <ul class="erji_ul">
+          <li class="erji"><a href="kdgsdq.html">快递公司大全</a></li>
+          <li class="erji"><a href="gjkddq.html">国际快递大全</a></li>
+         </ul>
+       </li>
+       <li><a href="#">寄快递</a>
+         <ul class="erji_ul">
+          <li class="erji"><a href="kdsxcx.html">快递时效查询</a></li>
+          <li class="erji"><a href="kdjgcx.html">快递价格查询</a></li>
+         </ul>
+       </li>
+       <li><a href="#">查网点</a>
+       <ul class="erji_ul">
+          <li class="erji"><a href="kddhcx.html">快递电话大全</a></li>
+         </ul>
+       </li>
+       <li><a href="#">快递接口</a>
+       <ul class="erji_ul">
+          <li class="erji"><a href="hzhb.html">合作伙伴</a></li>
+         </ul>
+       </li>
+       <li><a href="kdgj.html">快递管家</a></li>
+      </ul>
+     </div> 
+     <!-- 原有按钮区域（未登录显示） -->
+     <div class="top-right-btns">
+		<input type="submit" value=登陆  onclick="clickme1()"  >
+		<input type="submit" value=注册  onclick="clickme2()"  >
+		<input type="submit" value=管理员  onclick="clickme3()"  >
+     </div>
+     <!-- 新增：登录后显示的用户名区域 -->
+     <div class="user-info">
+        欢迎您：<span id="username" onclick="goToUserPage()"></span>
+        <button onclick="logout()">退出登录</button>
+     </div>
+ </div>
+
+ <div class="query-box">
+     <div class="query-form">
+         <form action="chaxun.jsp" method="get">
+             <h2>全新升级  智能查询</h2>
+             <input type="text" name="text" placeholder="请输入订单号" class="query-input">
+             <input type="submit" value="查询" class="submit-btn">
+         </form>
+     </div>
+ </div>
+</center>
+</body>
+</html>

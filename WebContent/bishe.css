@@ -1,0 +1,222 @@
+/* 表格样式 */
+.express-table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: "Microsoft YaHei", sans-serif;
+}
+.express-table th {
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 2px solid #dee2e6
+}
+.express-table td {
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+/* 标题样式 */
+h1 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 36px;          /* 增大字体 */
+    font-weight: 700;         /* 加粗 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 文字阴影增强立体感 */
+    letter-spacing: 2px;      /* 字间距 */
+    padding: 10px 0;          /* 上下内边距 */
+}
+/* 字体样式 */
+hr {
+    border: none;
+    height: 2px;              /* 加粗线条 */
+    background: linear-gradient(to right, transparent, #ff7e5f, #feb47b, transparent); /* 渐变效果 */
+    width: 80%;               /* 缩短宽度更美观 */
+    margin: 20px auto;        /* 居中+增加上下间距 */
+	background-color: #ccc;
+}
+.query-form {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: rgba(0,0,0,0.3); /* 半透明背景层 */
+    border-radius: 10px;
+    width: 500px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	margin: 0 auto 20px; /* 顶部间距清零，底部保留20px */
+	border-radius: 12px;
+}
+.query-input {
+  /* 输入框 */
+  box-sizing: border-box;
+  width: 250px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-size: 14px;
+  outline: none;
+}
+.query-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+/* 提交按钮 */
+.submit-btn {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* 过渡动画，更丝滑 */
+}
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 普通按钮样式 */
+.normal-btn {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6c757d;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.normal-btn:hover {
+  background-color: #5a6268;
+}
+/* 灰色按钮 */
+.back-home-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 25px;
+    background-color: #6c757d;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+.back-home-btn:hover {
+    background-color: #5a6268;
+}
+/* 右上角按钮核心样式 */
+.top-right-btns {
+    position: absolute;
+    top: 20px;          /* 距离顶部20px */
+    right: 20px;        /* 距离右侧20px（核心修改） */
+    z-index: 999;
+}
+
+.top-right-btns button {
+    margin-left: 10px;  /* 按钮间距（适配右侧布局） */
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background-color: #ccc;
+    color: #000;
+}
+
+.top-right-btns button:hover {
+    background-color: #930;
+    color: #fff;
+}
+/* 子菜单 */
+ul {
+    list-style: none;
+}
+
+#nav > ul > li {
+    float: left;
+    text-align: center;
+    padding: 0 20px; /* 修复padding导致的高度溢出问题 */
+    line-height: 40px; /* 行高与导航栏高度一致，垂直居中 */
+    position: relative; /* 为子菜单定位做准备 */
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+
+a:hover {
+    background-color: #930; /* 修复颜色值缺失# */
+    color: #fff;
+}
+
+.erji {
+    float: none;
+    background-color: #ccc;
+    width: 120px; /* 固定子菜单宽度 */
+}
+
+.erji a:hover {
+    color: #fff;
+    background-color: #930;
+}
+
+.erji_ul {
+    display: none;
+    position: absolute; /* 子菜单绝对定位，防止影响父布局 */
+    top: 40px;
+    left: 0;
+    width: 120px;
+}
+
+ul li:hover .erji_ul {
+    display: block;
+}
+
+.btn-group {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.query-form {
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+}
+
+.query-form input[type="text"] {
+    padding: 5px;
+    width: 250px;
+    margin-right: 10px;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+}

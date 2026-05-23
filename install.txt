@@ -1,0 +1,13 @@
+一、Chrome浏览器安装说明
+  浏览器打开 chrome://extensions/ , 这个网址，把右上角的 开发者模式打开。
+  将CRX文件，直接拖放到 浏览器的扩展列表中即可。
+  如果拖进来也不能安装，则进行下一步：浏览器打开: chrome://flags/#extensions-on-chrome-urls
+   将Extensions on chrome:// URLs 设置为Enable , 重启chrome ,重新进入到扩展页面，再拖进来就可以了。
+   老版本的Chrome 可以安装：igg_2.0.11.crx 这个版本。
+   
+二、Edge浏览器安装说明
+   浏览器打开 edge://extensions/ , 这个网址，把左边的 开发人员模式 开启。
+  将CRX文件，直接拖放到 浏览器的扩展列表中即可。
+  
+三、Firefox 浏览器安装说明
+   浏览器打开 about:addons ， 选择扩展列表页面的右上齿轮图标 - 从文件安装附加组件 -   选择 igg_2.3.8.xpi 即可。

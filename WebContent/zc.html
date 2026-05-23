@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册</title>
+<script>
+  function clickme() {
+	  window.location.href="zhuye.html";
+  }
+  // 新增：注册逻辑
+  function doRegister() {
+      const username = document.querySelector('input[name="txtUser"]').value;
+      const pwd1 = document.querySelector('input[name="txtPassword"]').value;
+      const pwd2 = document.querySelector('input[name="txtPassword1"]').value;
+
+      if (!username) {
+          alert('请输入用户名！');
+          return;
+      }
+      if (pwd1 !== pwd2) {
+          alert('两次密码不一致！');
+          return;
+      }
+      // 实际项目需调用后端注册接口，这里模拟注册成功
+      localStorage.setItem('loginUsername', username); // 注册后自动登录
+      alert('注册成功！即将返回首页');
+      window.location.href = 'zhuye.html';
+  }
+</script>
+</head>
+ <style>
+	body{
+	   background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+	   margin: 0;
+	   padding: 20px 0;
+	}
+</style>
+<center>
+<h1>创建您的快递账号</h1><br><br>
+    <table>            
+            <tr> 
+                <td>请输入用户名：</td>
+                <td><input name="txtUser" type="text" size="20" placeholder="请输入用户名"><br><br></td>
+            </tr>
+            <tr> 
+                <td>请输入密码：</td>
+                <td><input name="txtPassword" type="password" size="20" placeholder="请输如密码"><br><br></td>
+            </tr>
+              <tr> 
+                <td>请再输入密码：</td>
+                <td><input name="txtPassword1" type="password" size="20" placeholder="请再次输入密码"><br><br></td>
+            </tr>
+           </table>
+            <!-- 改造：点击提交触发注册逻辑 -->
+            <input type="button" value="提交" onclick="doRegister()">
+            <input type="reset" value="全部重写" >
+			<input type="button" value=返回首页 onclick="clickme()" >
+    </center>
+</html>

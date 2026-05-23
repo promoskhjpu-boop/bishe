@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快递时效查询</title>
+<link rel="stylesheet" type="text/css" href="bishe.css">
+<script src="common.js"></script>
+<style>
+ body{
+    background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+    margin: 0;
+    padding: 20px 0;
+ }
+</style>
+ <marquee direction=left wigth=200>快递时效查询！</marquee>
+ <br>
+ <h1>快递时效查询</h1>
+ <br>
+ <hr align=center>
+ <br><br>
+ <form action=kdsx.jsp method="get">
+寄件地址：<input type="text" name="text1" placeholder="从">
+<br><br>
+收件地址：<input type="text" name="text2" placeholder="到">
+<br><br>
+<input type="submit" value=查询 >
+ <input type="button" value=返回首页  onclick="clickme()"  >
+</form> 
+</head>
+</html>

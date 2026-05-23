@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快递价格查询</title>
+<link rel="stylesheet" type="text/css" href="bishe.css">
+<script src="common.js"></script>
+<style>
+ body{
+    background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+    margin: 0;
+    padding: 20px 0;
+ }
+</style>
+ <marquee direction=left wigth=200>快递价格查询 ！</marquee>
+ <br>
+ <h1>快递价格查询</h1>
+ <br>
+ <hr align=center>
+ <br><br>
+ <form action=jgcx.jsp method="get">
+发件地：<input type="text" name="text1" placeholder="输入发件地">
+<br><br>
+收件地：<input type="text" name="text2" placeholder="输入收件地">
+<br><br>
+重量：<input type="text" name="zl" >
+<br><br>
+<input type="submit" value=搜索快递>
+<input type="button" value=返回首页  onclick="clickme()"  >
+</form>
+</head>
+</html>

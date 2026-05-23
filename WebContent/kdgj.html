@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快递管家</title>
+<link rel="stylesheet" type="text/css" href="bishe.css">
+<script src="common.js"></script>
+<style>
+ body{
+    background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+    margin: 0;
+    padding: 20px 0;
+ }
+</style>
+<script>
+// 新增：模拟登录逻辑
+function doLogin() {
+    // 获取输入的用户名和密码
+    const username = document.querySelector('input[name="txtUser"]').value;
+    const password = document.querySelector('input[name="txtPassword"]').value;
+
+    // 实际项目需替换为后端接口请求（如axios/post），这里仅做模拟
+    if (username && password) { // 简单校验：非空即登录成功
+        localStorage.setItem('loginUsername', username); // 存储用户名
+        alert('登录成功！即将返回首页');
+        window.location.href = 'zhuye.html'; // 跳回首页
+    } else {
+        alert('请输入用户名和密码！');
+    }
+}
+</script>
+<center>
+<h1>一个账户，畅享所有服务</h1><br><br>
+<!-- 改造：点击登录按钮触发doLogin，而非直接提交表单 -->
+<form onsubmit="event.preventDefault(); doLogin();">
+用户名： <input type="text" name="txtUser" placeholder="请输入手机号"><br><br>
+密码： <input type="password" name="txtPassword" placeholder="请输入密码"><br><br>
+<input type="submit" value=登录 >
+<input type="button" value="注册" onclick="clickme2()">
+<input type="button" value=返回首页  onclick="clickme()" >
+</form>
+<br>
+</center>
+</head>
+</html>

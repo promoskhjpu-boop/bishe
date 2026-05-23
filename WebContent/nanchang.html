@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>南昌站</title>
+	<link rel="stylesheet" type="text/css" href="bishe.css">
+    <style>
+        body { 
+            background: url("img/南昌.jpg") center top / cover no-repeat fixed;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px 0;
+        }
+    </style>
+    <script language="JavaScript">
+        function clickme() {
+            window.location.href = "zhuye.html";
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h2>南昌站，欢迎您</h2>
+        <hr>
+        <br>
+        <form action="nanchangchaxun.jsp" method="get" class="query-form">
+            <input type="text" name="text1" placeholder="请输入订单号">
+            <input type="submit" value="查询">
+            <input type="button" value="返回首页" onclick="clickme()">
+        </form>
+    </center>
+</body>
+</html>
