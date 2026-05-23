@@ -3,7 +3,7 @@ function clickme2() {
     window.location.href = "zc.html";
 }
 function clickme1() {
-    window.location.href = "kdgj.html";	
+    window.location.href = "login.html";	
 }
 function clickme3() {
     window.location.href = "guanliyuan.html";
