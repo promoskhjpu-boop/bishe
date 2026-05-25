@@ -37,13 +37,12 @@ System.out.print("Error getConnection,不能连接数据库");
 	 String sql="select * from "+tableName+" where name = '"+username + "' and password = '"+password+"'";
 	 rs=st.executeQuery(sql);
 	 
-		if(rs.next()){
-			 
-			response.sendRedirect("zhuye.html");
-			 
-		}else{
-			out.print("<script language='javascript'>alert('用户名或密码错误，请检查！');</script>");
-		}
+	 if(rs.next()){
+		session.setAttribute("loginUser", username);  // 保存到session
+		response.sendRedirect("zhuye.html");           // 跳转到主页
+	} else {
+		out.print("<script>alert('用户名或密码错误！');history.back();</script>");
+	}
 			
 rs.close();
 st.close();

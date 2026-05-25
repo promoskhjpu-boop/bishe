@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户首页 - 快递管家</title>
+    <link rel="stylesheet" href="userHome.css">
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <h1>快递管家 - 用户首页</h1>
+    </div>
+    <div class="user-menu">
+        <span id="usernameDisplay">欢迎, 用户</span>
+        <button onclick="logout()">退出登录</button>
+    </div>
+</div>
+
+<div class="main">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#" onclick="showSection('home')" class="active">用户首页</a></li>
+            <li><a href="#" onclick="showSection('profile')">用户资料</a></li>
+            <li><a href="#" onclick="showSection('security')">安全中心</a></li>
+            <li><a href="#" onclick="showSection('address')">地址管理</a></li>
+            <li><a href="#" onclick="showSection('courier')">快递信息</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- 用户首页 -->
+        <div id="home" class="section">
+            <div class="welcome-section">
+                <h2 id="welcomeMessage">欢迎回来！</h2>
+                <p>在这里管理您的快递信息和账户设置</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCouriers">0</div>
+                    <div>总快递数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="processingCouriers">0</div>
+                    <div>处理中</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="deliveredCouriers">0</div>
+                    <div>已送达</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 其他部分保持不变 -->
+        <div id="profile" class="section" style="display:none;">
+            <h2>个人资料</h2>
+            <form id="profileForm" onsubmit="updateProfile(event)">
+                <label for="username">用户名：</label>
+                <input type="text" id="usernameInput" name="username" readonly><br><br>
+                <label for="phone">手机号：</label>
+                <input type="text" id="phone" name="phone"><br><br>
+                <label for="email">电子邮件：</label>
+                <input type="email" id="email" name="email"><br><br>
+                <input type="submit" value="保存修改">
+            </form>
+        </div>
+
+        <div id="security" class="section" style="display:none;">
+            <h2>安全中心</h2>
+            <form id="passwordForm" onsubmit="changePassword(event)">
+                <label for="oldPassword">旧密码：</label>
+                <input type="password" id="oldPassword" name="oldPassword" required><br><br>
+                <label for="newPassword">新密码：</label>
+                <input type="password" id="newPassword" name="newPassword" required><br><br>
+                <label for="confirmPassword">确认密码：</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+                <input type="submit" value="修改密码">
+            </form>
+        </div>
+
+        <div id="address" class="section" style="display:none;">
+            <h2>地址管理</h2>
+            <button onclick="addNewAddress()">添加新地址</button>
+            <div id="addressList">
+                <!-- 地址列表将通过JS动态加载 -->
+            </div>
+        </div>
+
+        <div id="courier" class="section" style="display:none;">
+            <h2>快递信息</h2>
+            <div id="courierList">
+                <!-- 快递列表将通过JS动态加载 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="userHome.js"></script>
+<script>
+// 页面加载逻辑
+document.addEventListener('DOMContentLoaded', function() {
+    loadUserData();
+    loadUserStatistics();
+});
+
+// 加载用户数据
+function loadUserData() {
+    const username = localStorage.getItem('loginUsername');
+    if (username) {
+        document.getElementById('usernameDisplay').textContent = '欢迎, ' + username;
+        document.getElementById('welcomeMessage').textContent = '欢迎回来，' + username + '！';
+        document.getElementById('usernameInput').value = username;
+        
+        // 从数据库加载用户信息（这里需要连接后端）
+        // fetchUserData(username);
+    } else {
+        window.location.href = 'login.html';
+    }
+}
+
+// 加载用户统计数据
+function loadUserStatistics() {
+    const username = localStorage.getItem('loginUsername');
+    if (username) {
+        // 这里应该从数据库获取用户的快递统计信息
+        // fetchCourierStatistics(username);
+        
+        // 暂时使用模拟数据
+        document.getElementById('totalCouriers').textContent = '12';
+        document.getElementById('processingCouriers').textContent = '3';
+        document.getElementById('deliveredCouriers').textContent = '9';
+    }
+}
+
+// 显示不同部分
+function showSection(sectionId) {
+    // 移除所有active类
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // 给当前点击的链接添加active类
+    event.target.classList.add('active');
+    
+    // 隐藏所有section
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    // 显示目标section
+    document.getElementById(sectionId).style.display = 'block';
+}
+
+// 更新个人资料
+function updateProfile(event) {
+    event.preventDefault();
+    
+    const userData = {
+        username: document.getElementById('usernameInput').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value
+    };
+    
+    // 这里应该发送数据到后端保存
+    // saveUserProfile(userData);
+    
+    alert('个人资料已更新！');
+}
+
+// 修改密码
+function changePassword(event) {
+    event.preventDefault();
+    
+    const oldPassword = document.getElementById('oldPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    if (newPassword !== confirmPassword) {
+        alert('两次输入的密码不一致！');
+        return;
+    }
+    
+    if (newPassword.length < 6) {
+        alert('密码长度不能少于6位！');
+        return;
+    }
+    
+    // 这里应该发送数据到后端验证和保存
+    // changeUserPassword(oldPassword, newPassword);
+    
+    alert('密码修改成功！');
+    
+    // 清空表单
+    document.getElementById('passwordForm').reset();
+}
+
+// 添加新地址
+function addNewAddress() {
+    const addressHTML = `
+        <div class="address-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+            <h4>新地址</h4>
+            <form onsubmit="saveAddress(event)">
+                <label>收件人：</label>
+                <input type="text" name="recipient" required><br><br>
+                <label>电话：</label>
+                <input type="text" name="phone" required><br><br>
+                <label>地址：</label>
+                <textarea name="address" rows="3" style="width: 100%;" required></textarea><br><br>
+                <input type="submit" value="保存地址">
+                <button type="button" onclick="removeAddress(this)">删除</button>
+            </form>
+        </div>
+    `;
+    
+    document.getElementById('addressList').insertAdjacentHTML('afterbegin', addressHTML);
+}
+
+function saveAddress(event) {
+    event.preventDefault();
+    alert('地址保存成功！');
+}
+
+function removeAddress(button) {
+    button.closest('.address-item').remove();
+}
+
+// 加载快递信息
+function loadCourierInfo() {
+    const username = localStorage.getItem('loginUsername');
+    if (username) {
+        // 这里应该从数据库获取用户的快递信息
+        // fetchUserCouriers(username);
+        
+        // 暂时使用模拟数据
+        const courierHTML = `
+            <table class="express-table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>快递单号</th>
+                        <th>快递公司</th>
+                        <th>状态</th>
+                        <th>预计送达</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SF123456789</td>
+                        <td>顺丰速运</td>
+                        <td>运输中</td>
+                        <td>2024-01-15</td>
+                        <td><button onclick="viewCourierDetail('SF123456789')">查看详情</button></td>
+                    </tr>
+                    <tr>
+                        <td>YT987654321</td>
+                        <td>圆通快递</td>
+                        <td>已送达</td>
+                        <td>2024-01-10</td>
+                        <td><button onclick="viewCourierDetail('YT987654321')">查看详情</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+        
+        document.getElementById('courierList').innerHTML = courierHTML;
+    }
+}
+
+function viewCourierDetail(trackingNumber) {
+    alert('查看快递详情：' + trackingNumber);
+    // 这里可以跳转到快递详情页面
+}
+
+// 修改showSection函数，当显示快递信息时加载数据
+function showSection(sectionId) {
+    // ... 原有的隐藏显示逻辑 ...
+    
+    // 显示目标section
+    const targetSection = document.getElementById(sectionId);
+    targetSection.style.display = 'block';
+    
+    // 如果是快递信息部分，加载数据
+    if (sectionId === 'courier') {
+        loadCourierInfo();
+    }
+}
+
+// 退出登录
+function logout() {
+    if (confirm('确定要退出登录吗？')) {
+        localStorage.removeItem('loginUsername');
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+}
+</script>
+</body>
+</html>

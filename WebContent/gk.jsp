@@ -74,7 +74,7 @@ try{
     out.println("</table>");
     
     // 会员信息
-    rs=st.executeQuery("select * from denglu");
+    rs=st.executeQuery("select * from login");
     out.println("会员信息<br><table border=1>");
     out.println("<tr><td>账号</td><td>密码</td></tr>");
     while(rs.next()){

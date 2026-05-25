@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快递管家</title>
+<link rel="stylesheet" type="text/css" href="bishe.css">
+<script src="common.js"></script>
+<style>
+ body{
+    background: url("img/背景草地.jpg") center top / cover no-repeat fixed;
+    margin: 0;
+    padding: 20px 0;
+ }
+</style>
+<center>
+<h1>一个账户，畅享所有服务</h1><br><br>
+
+<!-- 关键修改：action指向你的后端JSP，method用post -->
+<form action="login.jsp" method="post">
+用户名： <input type="text" name="txtUser" placeholder="请输入手机号"><br><br>
+密码： <input type="password" name="txtPassword" placeholder="请输入密码"><br><br>
+<input type="submit" value="登录">
+<input type="button" value="注册" onclick="clickme2()">
+<input type="button" value=返回首页  onclick="clickme()" >
+</form>
+<br>
+</center>
+</head>
+</html>
